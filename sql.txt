@@ -1,0 +1,14 @@
+CREATE TABLE NguoiDung (
+    ID INT 'AUTO_INCREMENT' PRIMARY KEY,
+    Email VARCHAR(30),
+    Ten VARCHAR(100),
+    Tuoi INT,
+    GioiTinh ENUM('Nam', 'Nu', 'Khac'),
+    CanNang FLOAT,
+    ChieuCao FLOAT,
+    BMI FLOAT,
+    BMR FLOAT,
+    MucDoHoatDong ENUM('ItVanDong', 'TrungBinh', 'Cao'),
+    MucTieu ENUM('GiamCan', 'TangCan', 'DuyTriSucKhoe', 'HoTroBenhLy'),
+    TienSuBenhLy TEXT
+);
