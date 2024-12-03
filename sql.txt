@@ -1,5 +1,5 @@
 CREATE TABLE NguoiDung (
-    ID INT 'AUTO_INCREMENT' PRIMARY KEY,
+    ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     Email VARCHAR(30),
     Ten VARCHAR(100),
     Tuoi INT,
@@ -12,3 +12,8 @@ CREATE TABLE NguoiDung (
     MucTieu ENUM('GiamCan', 'TangCan', 'DuyTriSucKhoe', 'HoTroBenhLy'),
     TienSuBenhLy TEXT
 );
+
+INSERT INTO NguoiDung
+Values(1, 'tannguyenkhacminh@gmail.com', 'Tan', 21, 'Nam', 75, 168, 0, 0, 'Cao', 'TangCan', '')
+
+SELECT * FROM NguoiDung nd 
