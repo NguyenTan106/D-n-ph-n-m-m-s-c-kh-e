@@ -14,6 +14,10 @@ const hostname = process.env.HOST_NAME;
 // config template engine and config static files
 configViewEngine(app);
 
+// config req.body
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 //simple querry
 // connection.query("SELECT * FROM NguoiDung", (err, results, fields) => {
 //   console.log("result:", results);
