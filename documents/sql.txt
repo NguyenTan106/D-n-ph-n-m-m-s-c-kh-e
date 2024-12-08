@@ -64,3 +64,4 @@ CREATE TABLE supply_sources (
     source_address TEXT,         -- Địa chỉ hoặc thông tin chi tiết
     FOREIGN KEY (food_id) REFERENCES foods(id) ON DELETE CASCADE
 );
+
