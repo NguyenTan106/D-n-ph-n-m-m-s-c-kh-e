@@ -1,24 +1,20 @@
-const connection = require("../configs/database");
+// import db from "../models/index";
+const db = require("../models/index");
 
-const getHomePage = (req, res) => {
-  let users = [];
-  connection.query("SELECT * FROM NguoiDung", (err, results, fields) => {
-    users = results;
-    // console.log("result:", results);
-    res.send(JSON.stringify(users));
-  });
+const getHomePage = async (req, res) => {
+  try {
+    let data = await db.User.findAll();
+    return res.render("samples", {
+      data: JSON.stringify(data),
+    });
+  } catch (e) {
+    console.log(e);
+  }
 };
-
-const getSample = (req, res) => {
+const register = (req, res) => {
   res.render("register");
-};
-
-const createNewUser = (req, res) => {
-  console.log(req.body);
-  res.send("create a new user");
 };
 module.exports = {
   getHomePage,
-  getSample,
-  createNewUser,
+  register,
 };

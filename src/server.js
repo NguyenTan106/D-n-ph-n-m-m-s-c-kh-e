@@ -1,31 +1,27 @@
 const express = require("express");
-const path = require("path");
-require("dotenv").config();
+const bodyParser = require("body-parser");
 const configViewEngine = require("./configs/viewEngine");
-const webRoute = require("./routes/web");
-const mysql = require("mysql2");
-const connection = require("./configs/database");
+const initWebRoutes = require("./routes/web");
+const connectDB = require("./configs/connectDB");
+require("dotenv").config();
 
-// console.log(">>> check env: ", process.env);
 const app = express();
 const port = process.env.PORT || 8080;
-const hostname = process.env.HOST_NAME;
+
+// config req.body
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // config template engine and config static files
 configViewEngine(app);
+initWebRoutes(app);
 
-// config req.body
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
+connectDB();
 //simple querry
 // connection.query("SELECT * FROM NguoiDung", (err, results, fields) => {
 //   console.log("result:", results);
 // });
 
-// declare route
-app.use("/", webRoute);
-
 app.listen(port, () => {
-  console.log(`App listening on port ${hostname}:${port}`);
+  console.log(`App listening on port: ${port}`);
 });

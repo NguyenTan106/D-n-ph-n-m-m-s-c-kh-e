@@ -1,0 +1,66 @@
+CREATE TABLE Users (
+    ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,  -- User ID
+    Email VARCHAR(30),                           -- Email
+    Password VARCHAR(30),                        -- Password
+    Name VARCHAR(100),                           -- Full name
+    Age INT,                                     -- Age
+    Gender ENUM('Male', 'Female', 'Other'),      -- Gender
+    Weight FLOAT,                                -- Weight (in kg)
+    Height FLOAT,                                -- Height (in cm)
+    BMI FLOAT,                                   -- Body Mass Index
+    BMR FLOAT,                                   -- Basal Metabolic Rate
+    ActivityLevel ENUM('Low', 'Moderate', 'High'), -- Activity Level
+    Goal ENUM('LoseWeight', 'GainWeight', 'MaintainHealth', 'SupportIllness'), -- Health goal
+    MedicalHistory TEXT                          -- Medical history or conditions
+);
+
+INSERT INTO Users
+Values(1, 'tannguyenkhacminh@gmail.com', '123', 'Tan', 21, 'Nam', 75, 168, 0, 0, 'Cao', 'TangCan', '')
+
+CREATE TABLE foods (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,  -- Tên thực phẩm
+    origin VARCHAR(255),         -- Nguồn gốc
+    category VARCHAR(255),       -- Loại thực phẩm (trái cây, rau củ, thịt, ...)
+    image_url TEXT,              -- URL hình ảnh minh họa
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE nutrition_facts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    food_id INT NOT NULL,             -- ID thực phẩm (liên kết với bảng foods)
+    nutrient_name VARCHAR(255) NOT NULL, -- Tên chất dinh dưỡng (ví dụ: calories, protein)
+    value FLOAT,                      -- Giá trị dinh dưỡng (ví dụ: 89, 1.1)
+    unit VARCHAR(50),                 -- Đơn vị (ví dụ: kcal, g, mg)
+    FOREIGN KEY (food_id) REFERENCES foods(id) ON DELETE CASCADE
+);
+
+CREATE TABLE health_benefits (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    food_id INT NOT NULL,        -- ID thực phẩm (liên kết với bảng foods)
+    benefit TEXT NOT NULL,       -- Lợi ích sức khỏe (ví dụ: tốt cho tiêu hóa)
+    FOREIGN KEY (food_id) REFERENCES foods(id) ON DELETE CASCADE
+);
+
+CREATE TABLE allergy_info (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    food_id INT NOT NULL,        -- ID thực phẩm (liên kết với bảng foods)
+    allergy TEXT NOT NULL,       -- Dị ứng liên quan (ví dụ: dị ứng latex)
+    FOREIGN KEY (food_id) REFERENCES foods(id) ON DELETE CASCADE
+);
+
+CREATE TABLE usage_instructions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    food_id INT NOT NULL,        -- ID thực phẩm (liên kết với bảng foods)
+    instruction TEXT NOT NULL,   -- Hướng dẫn sử dụng (ví dụ: ăn sống, luộc)
+    FOREIGN KEY (food_id) REFERENCES foods(id) ON DELETE CASCADE
+);
+
+CREATE TABLE supply_sources (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    food_id INT NOT NULL,        -- ID thực phẩm (liên kết với bảng foods)
+    source_name VARCHAR(255),    -- Tên nguồn cung cấp
+    source_address TEXT,         -- Địa chỉ hoặc thông tin chi tiết
+    FOREIGN KEY (food_id) REFERENCES foods(id) ON DELETE CASCADE
+);
