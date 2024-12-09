@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/styles.css">
+  <title>Edit user</title>
+</head>
+
+<body>
+  <form action="/update-user" method="POST">
+    <div class="container">
+      <h1>Edit user</h1>
+      <p>Please fill in this form to update user's info.</p>
+      <hr>
+
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" name="email" id="email" value="<%= userData.email %>" required>
+
+      <label for="name"><b>Name</b></label>
+      <input type="text" placeholder="Enter Name" name="name" id="name" value="<%= userData.name %>" required>
+
+      <label for="age"><b>Age</b></label>
+      <input type="text" placeholder="Enter Age" name="age" id="age" value="<%= userData.age %>" required>
+
+      <label for="gender"><b>Gender</b></label>
+      <select name="gender" id="gender" required>
+        <% for (let i = 0; i < gender.length; i++) { %>
+        <option value="<%= gender[i].gender %>" <%= userData.gender === gender[i].gender ? 'selected' : '' %>>
+          <%= gender[i].gender %>
+        </option>
+        <% } %>
+      </select>
+      <input type="text" name="id" value="<%= userData.id %>" style="display: none;">
+      <button type="submit" class="registerbtn">Update</button>
+    </div>
+  </form>
+</body>
+
+</html>

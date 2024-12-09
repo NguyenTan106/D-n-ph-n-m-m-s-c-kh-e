@@ -10,7 +10,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // Define associations here
-      this.belongsTo(models.Gender, { foreignKey: "genderId", as: "gender" });
       this.belongsTo(models.ActivityLevel, {
         foreignKey: "activityLevelId",
         as: "activityLevel",
@@ -33,27 +32,23 @@ module.exports = (sequelize, DataTypes) => {
       },
       name: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       age: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
       },
-      genderId: {
-        type: DataTypes.INTEGER,
-        references: {
-          model: "Genders", // Name of the table
-          key: "id",
-        },
-        allowNull: false,
+      gender: {
+        type: DataTypes.STRING,
+        allowNull: true,
       },
       weight: {
         type: DataTypes.FLOAT,
-        allowNull: false,
+        allowNull: true,
       },
       height: {
         type: DataTypes.FLOAT,
-        allowNull: false,
+        allowNull: true,
       },
       bmi: {
         type: DataTypes.FLOAT,
@@ -69,7 +64,7 @@ module.exports = (sequelize, DataTypes) => {
           model: "ActivityLevels",
           key: "id",
         },
-        allowNull: false,
+        allowNull: true,
       },
       medicalHistory: {
         type: DataTypes.TEXT,
@@ -81,7 +76,7 @@ module.exports = (sequelize, DataTypes) => {
           model: "Goals",
           key: "id",
         },
-        allowNull: false,
+        allowNull: true,
       },
       roleId: {
         type: DataTypes.INTEGER,
@@ -89,12 +84,14 @@ module.exports = (sequelize, DataTypes) => {
           model: "Roles",
           key: "id",
         },
-        allowNull: false,
+        allowNull: true,
       },
     },
     {
       sequelize,
       modelName: "User",
+      charset: "utf8mb4",
+      collate: "utf8mb4_unicode_ci",
     }
   );
 

@@ -7,7 +7,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // Gender has many Users
-      Gender.hasMany(models.User, { foreignKey: "genderId" });
     }
   }
   Gender.init(

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>List user</title>
+</head>
+
+<body>
+  <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td,
+    th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+  </style>
+  </head>
+
+  <body>
+
+    <h2>LIST USER</h2>
+
+    <table>
+      <tr>
+        <th>Email</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Actions</th>
+      </tr>
+      <% for (let i = 0; i < dataTable.length; i++) { %>
+      <tr>
+        <td><%= dataTable[i].email %></td>
+        <td><%= dataTable[i].name %></td>
+        <td><%= dataTable[i].age %></td>
+        <td><%= dataTable[i].gender %></td>
+        <td>
+          <a href="/edit-user?id=<%= dataTable[i].id %>" class="edit-btn" type="button">Edit</a> |
+          <a href="/delete-user?id=<%= dataTable[i].id %>" class="edit-btn" type="button">Delete</a>
+        </td>
+      </tr>
+      <% } %>
+
+    </table>
+
+  </body>
+
+</html>

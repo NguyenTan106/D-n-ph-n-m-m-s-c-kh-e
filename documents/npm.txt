@@ -1,2 +1,2 @@
-npm i --save-exact dotenv ejs express body-parser mysql2 sequelize sequelize-cli
+npm i --save-exact dotenv ejs express body-parser mysql2 sequelize sequelize-cli bcrypt
 npm i --save-dev @babel/core @babel/node @babel/preset-env nodemon

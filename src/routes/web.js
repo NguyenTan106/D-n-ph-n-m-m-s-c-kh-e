@@ -1,13 +1,25 @@
 const express = require("express");
 const router = express.Router();
-const { getHomePage, register } = require("../controllers/homeController.js");
+const {
+  getHomePage,
+  register,
+  postCRUD,
+  getCRUD,
+  editCRUD,
+  updateCRUD,
+  deleteCRUD,
+} = require("../controllers/homeController.js");
 
 // declare route
-let initWebRoutes = (app) => {
+const initWebRoutes = (app) => {
   router.get("/", getHomePage);
   router.get("/register", register);
   // router.get("/samples", getSample);
-  // router.post("/create-user", createNewUser);
+  router.post("/create-user", postCRUD);
+  router.get("/list-user", getCRUD);
+  router.get("/edit-user", editCRUD);
+  router.post("/update-user", updateCRUD);
+  router.get("/delete-user", deleteCRUD);
 
   return app.use("/", router);
 };
