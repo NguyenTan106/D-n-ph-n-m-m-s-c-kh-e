@@ -74,7 +74,7 @@ module.exports = {
             model: "Roles",
             key: "id",
           },
-          allowNull: true,
+          allowNull: false,
         },
         createdAt: {
           allowNull: false,

@@ -2,6 +2,7 @@
 const e = require("express");
 const db = require("../models/index");
 const CRUDService = require("../services/CRUDService");
+const userService = require("../services/userService");
 
 const getHomePage = async (req, res) => {
   try {
@@ -34,10 +35,21 @@ const postCRUD = async (req, res) => {
 };
 
 const getCRUD = async (req, res) => {
-  const data = await CRUDService.getAllUser();
-  return res.render("displayUser", {
-    dataTable: data,
-  });
+  try {
+    const data = await CRUDService.getAllUser(); // Lấy dữ liệu từ CRUDService
+    for (let user of data) {
+      user.role_name = await userService.getRoleNameById(user.roleId); // Lấy tên vai trò
+    }
+    return res.render("displayUser", {
+      dataTable: data,
+    });
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    return res.status(500).json({
+      errCode: 1,
+      errMessage: "Server error",
+    });
+  }
 };
 
 const editCRUD = async (req, res) => {

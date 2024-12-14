@@ -34,18 +34,22 @@
 
     <table>
       <tr>
+        <th>ID</th>
         <th>Email</th>
         <th>Name</th>
         <th>Age</th>
         <th>Gender</th>
+        <th>Roles</th>
         <th>Actions</th>
       </tr>
       <% for (let i = 0; i < dataTable.length; i++) { %>
       <tr>
+        <td><%= dataTable[i].id %></td>
         <td><%= dataTable[i].email %></td>
         <td><%= dataTable[i].name %></td>
         <td><%= dataTable[i].age %></td>
         <td><%= dataTable[i].gender %></td>
+        <td><%= dataTable[i].role_name %></td>
         <td>
           <a href="/edit-user?id=<%= dataTable[i].id %>" class="edit-btn" type="button">Edit</a> |
           <a href="/delete-user?id=<%= dataTable[i].id %>" class="edit-btn" type="button">Delete</a>

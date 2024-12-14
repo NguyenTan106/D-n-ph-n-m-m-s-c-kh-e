@@ -43,6 +43,17 @@ const getAllUser = () => {
   });
 };
 
+const getAllRole = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const roles = db.Role.findAll();
+      resolve(roles);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
 const getAllGender = () => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -124,4 +135,5 @@ module.exports = {
   getUserInfoById,
   updateUserData,
   deleteUserById,
+  getAllRole,
 };
