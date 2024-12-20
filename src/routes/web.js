@@ -15,12 +15,12 @@ const initWebRoutes = (app) => {
   // home controller
   router.get("/", getHomePage);
   router.get("/register", register);
-  // router.get("/samples", getSample);
   router.post("/create-user", postCRUD);
   router.get("/list-user", getCRUD);
   router.get("/edit-user", editCRUD);
   router.post("/update-user", updateCRUD);
   router.get("/delete-user", deleteCRUD);
+  // router.get("/samples", getSample);
 
   // user controller
   router.post("/api/login", userControllers.handleLogin);

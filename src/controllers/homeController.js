@@ -18,9 +18,11 @@ const getHomePage = async (req, res) => {
 };
 
 const register = async (req, res) => {
-  const data = await CRUDService.getAllGender();
+  const gender = await CRUDService.getAllGender();
+  const role = await CRUDService.getAllRole();
   return res.render("register", {
-    dataTable: data,
+    dataTable: gender,
+    dataRole: role,
   });
 };
 
@@ -56,11 +58,13 @@ const editCRUD = async (req, res) => {
   const userId = req.query.id;
   if (userId) {
     const gender = await CRUDService.getAllGender();
+    const role = await CRUDService.getAllRole();
     const userData = await CRUDService.getUserInfoById(userId);
     //check  user data not found
 
     return res.render("editUser", {
       gender: gender,
+      role: role,
       userData: userData,
     });
   } else {
@@ -71,6 +75,9 @@ const editCRUD = async (req, res) => {
 const updateCRUD = async (req, res) => {
   const data = req.body;
   const allUsers = await CRUDService.updateUserData(data);
+  for (let user of allUsers) {
+    user.role_name = await userService.getRoleNameById(user.roleId); // Lấy tên vai trò
+  }
   return res.render("displayUser", {
     dataTable: allUsers,
   });

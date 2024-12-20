@@ -30,6 +30,14 @@
         <option value="<%= dataTable[i].gender %>"><%= dataTable[i].gender %></option>
         <% } %>
       </select>
+
+      <label for="role"><b>Role</b></label>
+      <select name="role" id="role" required>
+        <% for (let i = 0; i < dataRole.length; i++) { %>
+        <option value="<%= dataRole[i].id %>"><%= dataRole[i].role_name %></option>
+        <% } %>
+      </select>
+
       <div></div>
       <label for="password"><b>Password</b></label>
       <input type="password" placeholder="Enter Password" name="password" id="password" required>

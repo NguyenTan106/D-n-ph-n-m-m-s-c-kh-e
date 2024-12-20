@@ -32,6 +32,16 @@
         </option>
         <% } %>
       </select>
+
+      <label for="role"><b>Gender</b></label>
+      <select name="role" id="role" required>
+        <% for (let i = 0; i < role.length; i++) { %>
+        <option value="<%= role[i].id %>" <%= userData.roleId === role[i].id ? 'selected' : '' %>>
+          <%= role[i].role_name %>
+        </option>
+        <% } %>
+      </select>
+
       <input type="text" name="id" value="<%= userData.id %>" style="display: none;">
       <button type="submit" class="registerbtn">Update</button>
     </div>
